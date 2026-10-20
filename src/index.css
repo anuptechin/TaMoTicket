@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --canvas: 245 247 250;
+  --surface: 255 255 255;
+  --surface-2: 248 250 252;
+  --ink: 11 18 32;
+  --muted: 82 93 112;
+  --subtle: 100 110 128;
+  --hairline: 228 232 239;
+  --primary: 14 124 134;
+  --primary-hover: 10 102 112;
+  --primary-soft: 14 124 134;
+  --note: 254 249 225;
+  --ink-strength: 76%;
+  --ink-base: #000;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: 8 12 20;
+  --surface: 15 21 33;
+  --surface-2: 20 27 41;
+  --ink: 229 234 242;
+  --muted: 158 168 186;
+  --subtle: 142 154 174;
+  --hairline: 34 43 60;
+  --primary: 32 168 178;
+  --primary-hover: 52 188 198;
+  --primary-soft: 32 168 178;
+  --note: 52 45 18;
+  --ink-strength: 62%;
+  --ink-base: #fff;
+  color-scheme: dark;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    font-size: 14px;
+    line-height: 1.45;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+  * {
+    @apply border-hairline;
+  }
+  :focus-visible {
+    outline: 2px solid rgb(var(--primary));
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-hairline rounded-xl;
+  }
+  .num {
+    font-variant-numeric: tabular-nums;
+  }
+  .mono {
+    @apply font-mono num;
+    font-size: 0.92em;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg px-3 h-9 text-[13px] font-semibold transition-colors whitespace-nowrap select-none;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-hover;
+  }
+  .dark .btn-primary {
+    @apply text-[#04252a];
+  }
+  .btn-secondary {
+    @apply btn bg-surface border border-hairline text-ink hover:bg-surface2;
+  }
+  .btn-ghost {
+    @apply btn text-muted hover:bg-surface2 hover:text-ink;
+  }
+  .btn-danger {
+    @apply btn bg-critical text-white hover:bg-red-700;
+  }
+  .btn-sm {
+    @apply h-8 px-2.5 text-[13px];
+  }
+  .input {
+    @apply h-9 w-full rounded-lg border border-hairline bg-surface px-3 text-[13px] text-ink placeholder:text-subtle focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+  .label {
+    @apply text-[13px] font-medium text-muted;
+  }
+  .eyebrow {
+    @apply text-[13px] font-semibold uppercase tracking-[0.06em] text-subtle;
+  }
+  .scroll-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(var(--hairline)) transparent;
+  }
+  .scroll-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scroll-thin::-webkit-scrollbar-thumb {
+    background: rgb(var(--hairline));
+    border-radius: 8px;
+  }
+  .skeleton {
+    @apply relative overflow-hidden rounded-md bg-hairline/60;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full animate-shimmer;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.35), transparent);
+  }
+  .kbd {
+    @apply inline-flex items-center rounded border border-hairline bg-surface2 px-1.5 font-mono text-[13px] leading-5 text-muted;
+  }
+}
+
+/* Accessible text tones for status colours (fills and charts keep the spec palette). */
+:root:not(.dark) .text-primary { color: #0a6670; }
+:root:not(.dark) .text-success { color: #166534; }
+.bg-success { background-color: #15803d; }
+.dark .bg-primary.text-white { color: #04252a; }
+:root:not(.dark) .text-warning { color: #92400e; }
+:root:not(.dark) .text-critical { color: #b91c1c; }
+:root:not(.dark) .text-info { color: #1d4ed8; }
+.dark .text-critical { color: #f87171; }
+.dark .text-info { color: #60a5fa; }
+.dark .text-warning { color: #fbbf24; }
+.dark .text-success { color: #4ade80; }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
