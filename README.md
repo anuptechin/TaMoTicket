@@ -37,6 +37,15 @@ Other commands:
 
 Reset rebuilds the identical 320 tickets, 70 customers, 18 people and 37 knowledge articles. Your theme and sign-in are kept.
 
+## 3D login screen
+
+The left half of the login screen is a live 3D scene (three.js): traffic on a night road, then a truck turns X-ray and its parts float out with their catalogue part numbers, reassemble, and drive off (24 s loop, 60 fps on integrated graphics). It is built from code, with no downloaded models, so it works offline.
+
+- **Pause / Play** button top right; with *reduced motion* switched on in Windows, it shows a still exploded view.
+- If WebGL is unavailable or the scene fails, the original static design appears instead.
+- The 3D code (about 230 KB gzipped) loads only on the login screen and is unloaded after sign-in.
+- Review a single frame with `http://localhost:4173/?hero=13` (seconds into the loop).
+
 ## Demo Director (Shift+D)
 
 A hidden control panel that runs each scenario end to end with no typing: incoming calls (eDukaan, Loyalty), WhatsApp journey, email + duplicate prevention, after-hours voice bot (self-resolved and hand-off), SLA 75% → breach → escalation, transfer Helpline → eDukaan, jump to Command Center, proactive delay notifications, reset. A small "v1.0" button in the footer opens it too. See `DEMO_SCRIPT.md` for the talk track.

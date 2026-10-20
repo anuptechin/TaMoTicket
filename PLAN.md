@@ -17,6 +17,7 @@
 | KPI calibration | AI-resolved tickets are calibrated to exactly 34% after generation | A per-ticket coin flip made the KPI swing 26–38% with the reset hour |
 | Overlays | Palette, Demo Director, modals and the call bar have entry animations only | An exit animation can stall when a heavy page mounts at the same moment, leaving a dead overlay |
 | Text colour | Status/priority colours rendered as text go through `ink()` (CSS `color-mix`) | Keeps the spec palette for fills and charts while meeting WCAG AA contrast |
+| 3D login | three.js scene built from primitives (no model files), lazy-loaded, error boundary + WebGL check fall back to the static hero | Offline, licence-free, no automaker styling, 60 fps on integrated GPUs |
 | Database | None for the demo; `src/services/*` is the seam for a later PostgreSQL-backed API | A live demo must not depend on network or credentials |
 
 ## Screens
